@@ -33,4 +33,5 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |
-                      mvn install
+                      java --version
+                      mvn -v 
