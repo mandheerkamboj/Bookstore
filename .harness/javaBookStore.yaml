@@ -35,16 +35,29 @@ pipeline:
                     command: |
                       java --version
                       mvn --version
+    - stage:
+        name: Testing
+        identifier: Testing
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
               - step:
                   type: Run
-                  name: Run_2
-                  identifier: Run_2
+                  name: SNYK
+                  identifier: SNYK
                   spec:
                     shell: Sh
-                    command: |+
+                    command: |
                       npm install snyk -g
                       snyk auth 02c3f931-9df9-4358-b837-581e75ee6ce4
                       snyk monitor
                       snyk test --severity-threshold=critical
-
-
