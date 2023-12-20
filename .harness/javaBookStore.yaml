@@ -35,3 +35,14 @@ pipeline:
                     command: |
                       java --version
                       mvn -v 
+              - step:
+                  type: Run
+                  name: Run_2
+                  identifier: Run_2
+                  spec:
+                    shell: Sh
+                    command: |-
+                      npm install snyk -g
+                      snyk auth 02c3f931-9df9-4358-b837-581e75ee6ce4
+                      snyk monitor
+                      snyk code test
