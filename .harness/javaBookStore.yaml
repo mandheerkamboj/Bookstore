@@ -34,7 +34,7 @@ pipeline:
                     shell: Sh
                     command: |
                       java --version
-                      mvn -v 
+                      mvn --version
               - step:
                   type: Run
                   name: Run_2
