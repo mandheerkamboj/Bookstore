@@ -41,7 +41,7 @@ pipeline:
         description: ""
         type: CI
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           platform:
             os: Linux
             arch: Amd64
@@ -61,9 +61,12 @@ pipeline:
                       snyk auth 02c3f931-9df9-4358-b837-581e75ee6ce4
                       snyk monitor
                       snyk test --severity-threshold=critical
+          caching:
+            enabled: false
+            paths: []
     - stage:
-        name: war
-        identifier: war
+        name: war file
+        identifier: war_file
         description: ""
         type: CI
         spec:
@@ -77,11 +80,9 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
-                  identifier: BuildAndPushDockerRegistry_1
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
                   spec:
-                    connectorRef: Docker_Connector
-                    repo: demo_docker_repo
-                    tags:
-                      - book
+                    shell: Sh
+                    command: mvn clean install
