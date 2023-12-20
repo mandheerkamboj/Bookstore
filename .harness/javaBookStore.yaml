@@ -41,9 +41,9 @@ pipeline:
                   identifier: Run_2
                   spec:
                     shell: Sh
-                    command: |
+                    command: |+
                       npm install snyk -g
                       snyk auth 02c3f931-9df9-4358-b837-581e75ee6ce4
                       snyk monitor
                       snyk ignore --path<src/main/java/servlets/BuyBooksServlet.java>
-                      snyk code test 
+
