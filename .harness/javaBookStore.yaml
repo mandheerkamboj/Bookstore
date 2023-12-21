@@ -61,4 +61,6 @@ pipeline:
                   identifier: Run_1
                   spec:
                     shell: Sh
-                    command: mvn clean install
+                    command: |-
+                      mvn --version
+                      mvn clean install
