@@ -46,7 +46,7 @@ pipeline:
         description: ""
         type: CI
         spec:
-          cloneCodebase: false
+          cloneCodebase: true
           platform:
             os: Linux
             arch: Amd64
@@ -64,3 +64,6 @@ pipeline:
                     command: |-
                       mvn --version
                       mvn clean install
+          caching:
+            enabled: false
+            paths: []
