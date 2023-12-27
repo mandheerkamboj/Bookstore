@@ -1,0 +1,55 @@
+pipeline:
+  name: firstpipeline
+  identifier: firstpipeline
+  projectIdentifier: demoProject
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: github
+        repoName: Bookstore
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |-
+                      mvn --version
+                      java --verison
+              - step:
+                  type: Run
+                  name: snyk
+                  identifier: snyk
+                  spec:
+                    shell: Sh
+                    command: |
+                      npm install snyk -g
+                      snyk auth 02c3f931-9df9-4358-b837-581e75ee6ce4
+                      snyk monitor
+                      snyk test --severity-threshold=critical
+              - step:
+                  type: Run
+                  name: war
+                  identifier: war
+                  spec:
+                    shell: Sh
+                    command: mvn clean install
