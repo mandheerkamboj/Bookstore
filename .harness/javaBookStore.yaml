@@ -43,9 +43,7 @@ pipeline:
                   identifier: Run_2
                   spec:
                     shell: Sh
-                    command: |-
-                      docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
-                      sonar-scanner -Dsonar.login=e27a10b81cde14679cc424c0400d1a5b58f5d971
+                    command: docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
           caching:
             enabled: false
             paths: []
