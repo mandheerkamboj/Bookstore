@@ -34,7 +34,7 @@ pipeline:
                     shell: Sh
                     command: |
                       npm install snyk -g
-                      snyk auth ${secrets.getValue('SNYK_AUTH')}
+                      snyk auth <+secrets.getValue("SNYK_AUTH")>
                       snyk monitor
                       snyk test --severity-threshold=critical
               - step:
