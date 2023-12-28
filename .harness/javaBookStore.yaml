@@ -46,6 +46,7 @@ pipeline:
                     command: |+
                       docker run -d --name sonarqube -p 9000:9000 sonarqube
                       mvn clean install
+                      mvn ./sonar.sh start
                       mvn sonar:sonar -Dsonar.host.url=https://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin
                       mvn -X clean verify sonar:sonar
 
