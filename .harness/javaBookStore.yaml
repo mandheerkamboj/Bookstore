@@ -45,6 +45,7 @@ pipeline:
                     shell: Sh
                     command: |-
                       docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
+                      mvn clean install
                       mvn clean verify sonar:sonar
           caching:
             enabled: false
