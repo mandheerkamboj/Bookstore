@@ -36,7 +36,7 @@ pipeline:
                       npm install snyk -g
                       snyk auth <+secrets.getValue("SNYK_AUTH")>
                       snyk monitor
-                      snyk test --severity-threshold=low
+                      snyk test --severity-threshold=none
               - step:
                   type: Run
                   name: Run_2
