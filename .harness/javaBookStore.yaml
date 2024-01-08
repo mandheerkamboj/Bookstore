@@ -43,15 +43,12 @@ pipeline:
                   identifier: Run_2
                   spec:
                     shell: Sh
-                    command: |+
-
-                      docker run -d --name sonarqube -p 9000:9000 sonarqube:latest
-                      sleep 30
-
-                      mvn clean verify sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin
-
-
-
+                    command: |-
+                      mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=Bookstore \
+                        -Dsonar.projectName='Bookstore' \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.token=<+secrets.getValue("SonarQube")>
           caching:
             enabled: false
             paths: []
